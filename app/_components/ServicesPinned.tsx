@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { SERVICES, type Service } from "../_lib/site";
@@ -30,7 +31,7 @@ export function ServicesPinned() {
   return (
     <section
       id="leistungen"
-      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6"
+      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6 isolate [content-visibility:auto] [contain-intrinsic-size:100vh]"
       aria-label="Leistungen"
     >
       <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
@@ -66,7 +67,7 @@ export function ServicesPinned() {
   );
 }
 
-function ServiceCard({
+const ServiceCard = memo(function ServiceCard({
   s,
   layout,
   index,
@@ -134,4 +135,4 @@ function ServiceCard({
 
     </motion.article>
   );
-}
+});

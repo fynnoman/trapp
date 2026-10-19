@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { type ReactNode } from "react";
+import { memo, type ReactNode } from "react";
 
 type Props = {
   text: string;
@@ -14,7 +14,7 @@ type Props = {
   decorate?: (word: string, i: number) => ReactNode;
 };
 
-export function SplitWords({
+function SplitWordsImpl({
   text,
   className,
   wordClassName,
@@ -80,3 +80,5 @@ export function SplitWords({
     </Comp>
   );
 }
+
+export const SplitWords = memo(SplitWordsImpl);

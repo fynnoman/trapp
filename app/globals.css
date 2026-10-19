@@ -81,7 +81,6 @@ body {
     radial-gradient(1200px 600px at 70% -10%, rgba(197, 135, 58, 0.18), transparent 55%),
     radial-gradient(900px 500px at -10% 110%, rgba(138, 74, 31, 0.14), transparent 55%),
     var(--bg);
-  background-attachment: fixed;
 }
 
 .font-display {
@@ -214,4 +213,7 @@ section[id] {
 }
 .marquee {
   animation: marquee 32s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
 }
