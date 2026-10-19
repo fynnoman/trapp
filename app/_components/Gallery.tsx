@@ -62,7 +62,7 @@ export function Gallery() {
   return (
     <section
       aria-label="Oberflächen"
-      className="relative mt-24 overflow-hidden sm:mt-32 [content-visibility:auto] [contain-intrinsic-size:70vh]"
+      className="relative mt-24 overflow-hidden sm:mt-32"
       ref={ref}
     >
       <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-6">

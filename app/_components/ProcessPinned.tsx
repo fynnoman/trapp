@@ -57,7 +57,7 @@ export function ProcessPinned() {
     <section
       id="handwerk"
       ref={ref}
-      className="relative mt-24 sm:mt-32 [content-visibility:auto] [contain-intrinsic-size:100vh]"
+      className="relative mt-24 sm:mt-32"
       style={{ height: reduced ? "auto" : `${stages.length * 90}vh` }}
       aria-label="Vom Aufmaß zur Übergabe"
     >

@@ -29,7 +29,7 @@ export function About() {
     <section
       id="betrieb"
       ref={ref}
-      className="relative mt-24 overflow-hidden sm:mt-40 [content-visibility:auto] [contain-intrinsic-size:100vh]"
+      className="relative mt-24 overflow-hidden sm:mt-40"
     >
       {/* ambient drift text in bg */}
       <motion.div

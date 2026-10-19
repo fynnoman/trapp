@@ -31,7 +31,7 @@ export function ServicesPinned() {
   return (
     <section
       id="leistungen"
-      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6 isolate [content-visibility:auto] [contain-intrinsic-size:100vh]"
+      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6"
       aria-label="Leistungen"
     >
       <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">

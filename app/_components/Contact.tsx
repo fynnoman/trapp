@@ -18,7 +18,7 @@ export function Contact() {
   };
 
   return (
-    <section id="kontakt" className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-40 sm:px-6 [content-visibility:auto] [contain-intrinsic-size:100vh]">
+    <section id="kontakt" className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-40 sm:px-6">
       <div className="relative overflow-hidden rounded-[28px] sm:rounded-[40px]">
         <div className="absolute inset-0 material-clay" />
         <div className="absolute inset-0 bg-gradient-to-br from-ink/50 via-transparent to-ink/55" />
