@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { SplitWords } from "./SplitWords";
 
 const items = [
   {
@@ -36,24 +35,16 @@ export function Faq() {
       className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-40 sm:px-6"
       aria-label="Häufige Fragen"
     >
-      <div className="grid gap-10 sm:gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
+      <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
         <div className="md:sticky md:top-32 md:self-start">
-          <div className="text-[10px] uppercase tracking-[0.24em] text-ink-mute sm:text-[11px] sm:tracking-[0.26em]">
-            Antworten
+          <div className="flex items-center gap-3">
+            <span className="rule-gold" />
+            <span className="eyebrow">Antworten</span>
           </div>
-          <h2 className="mt-4 font-display leading-[0.92] tracking-[-0.03em] text-ink md:text-[80px] md:leading-[0.9]"
-            style={{ fontSize: "clamp(2.4rem, 9vw, 5rem)" }}>
-            <SplitWords text="Alles," />
-            <br />
-            <SplitWords
-              text="was oft gefragt wird."
-              stagger={0.05}
-              decorate={(w, i) =>
-                i === 2 ? <span className="italic text-clay">{w}</span> : w
-              }
-            />
+          <h2 className="font-display mt-6 text-anthracite" style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", lineHeight: 1.1, letterSpacing: "-0.012em", fontWeight: 400 }}>
+            Was oft gefragt wird.
           </h2>
-          <p className="mt-5 max-w-sm text-pretty text-ink-soft sm:mt-6">
+          <p className="mt-6 max-w-sm text-pretty text-[17px] leading-[1.7] text-anthracite-soft">
             Fehlt etwas? Rufen Sie an. Die wichtigsten Antworten geben wir
             lieber persönlich.
           </p>
@@ -66,16 +57,16 @@ export function Faq() {
               <li key={it.q}>
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="group flex w-full items-center justify-between gap-4 py-5 text-left sm:gap-6 sm:py-6 md:py-8"
+                  className="group flex w-full items-center justify-between gap-4 py-6 text-left sm:gap-6 sm:py-7 md:py-8"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-display text-xl leading-tight tracking-tight text-ink sm:text-2xl md:text-3xl">
+                  <span className="font-display text-anthracite" style={{ fontSize: "clamp(1.2rem, 2.2vw, 1.65rem)", lineHeight: 1.2, letterSpacing: "-0.008em", fontWeight: 400 }}>
                     {it.q}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-ink/15 bg-surface/50 text-ink group-hover:bg-ink group-hover:text-surface sm:h-10 sm:w-10"
+                    className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-anthracite/15 bg-cream text-anthracite group-hover:bg-anthracite group-hover:text-cream sm:h-10 sm:w-10"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                       <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -91,7 +82,7 @@ export function Faq() {
                       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 pr-4 text-pretty text-sm text-ink-soft sm:pb-8 sm:pr-6 sm:text-base">
+                      <p className="pb-6 pr-4 text-pretty text-[15px] leading-[1.7] text-anthracite-soft sm:pb-8 sm:pr-6 sm:text-[17px]">
                         {it.a}
                       </p>
                     </motion.div>

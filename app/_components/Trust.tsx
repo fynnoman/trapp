@@ -17,15 +17,19 @@ export function Trust() {
   return (
     <section
       aria-label="Gewerke"
-      className="relative mt-24 overflow-hidden border-y border-line bg-surface/60 py-7 sm:mt-32 sm:py-10"
+      className="relative mt-24 overflow-hidden border-y border-line bg-cream-deep/40 py-8 sm:mt-32 sm:py-10"
     >
-      <div className="flex gap-6 marquee whitespace-nowrap font-display text-3xl tracking-tight text-ink/80 will-change-transform sm:gap-10 sm:text-4xl md:text-6xl">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-cream to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent z-10" />
+
+      <div className="font-display flex gap-10 marquee whitespace-nowrap text-anthracite/70 will-change-transform sm:gap-14"
+        style={{ fontSize: "clamp(1.4rem, 3.4vw, 2.2rem)", letterSpacing: "-0.008em" }}>
         {[0, 1].map((loop) => (
-          <div key={loop} className="flex gap-6 sm:gap-10">
+          <div key={loop} className="flex gap-10 sm:gap-14">
             {items.map((it, i) => (
-              <span key={`${loop}-${i}`} className="flex items-center gap-6 sm:gap-10">
+              <span key={`${loop}-${i}`} className="flex items-center gap-10 sm:gap-14">
                 <span>{it}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-clay sm:h-2 sm:w-2" />
+                <span className="h-1 w-1 rounded-full bg-champagne sm:h-1.5 sm:w-1.5" />
               </span>
             ))}
           </div>

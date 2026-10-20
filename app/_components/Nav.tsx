@@ -8,8 +8,9 @@ import { SITE } from "../_lib/site";
 
 const links = [
   { href: "#leistungen", id: "leistungen", label: "Leistungen" },
-  { href: "#handwerk", id: "handwerk", label: "Handwerk" },
-  { href: "#betrieb", id: "betrieb", label: "Betrieb" },
+  { href: "#handwerk", id: "handwerk", label: "Philosophie" },
+  { href: "#projekte", id: "projekte", label: "Referenzen" },
+  { href: "#betrieb", id: "betrieb", label: "Über uns" },
   { href: "#kontakt", id: "kontakt", label: "Kontakt" },
 ];
 
@@ -54,86 +55,82 @@ export function Nav() {
   return (
     <>
       <motion.header
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -16, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-3 left-1/2 z-50 -translate-x-1/2 w-[calc(100%-1.25rem)] max-w-6xl sm:top-4 sm:w-[calc(100%-2rem)]"
+        className={`fixed left-0 right-0 top-0 z-50 transition-colors duration-500 ${
+          scrolled ? "bg-cream/92 backdrop-blur-[12px] border-b border-anthracite/8" : "bg-transparent"
+        }`}
       >
-        <div
-          className={`glass relative flex items-center justify-between rounded-full pl-2 pr-2 transition-all duration-500 sm:pl-3 ${
-            scrolled ? "py-1.5" : "py-2"
-          } sm:py-2`}
-        >
-          {/* LEFT: nav links (desktop) / hamburger (mobile) */}
-          <div className="flex items-center">
-            <nav className="hidden md:flex items-center relative">
-              {links.map((l) => {
-                const isActive = active === l.id;
-                return (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    className={`relative rounded-full px-3.5 py-2 text-sm transition-colors ${
-                      isActive ? "text-ink" : "text-ink-soft hover:text-ink"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-pill"
-                        transition={{ type: "spring", stiffness: 280, damping: 28 }}
-                        className="absolute inset-0 -z-10 rounded-full bg-ink/[0.08]"
-                      />
-                    )}
-                    {l.label}
-                  </a>
-                );
-              })}
-            </nav>
+        <div className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 ${scrolled ? "py-3" : "py-5"}`}>
+          {/* LEFT: logo */}
+          <Link
+            href="/"
+            aria-label={SITE.nameLong}
+            className="flex items-center gap-3"
+          >
+            <Image
+              src={SITE.logo.src}
+              alt={SITE.logo.alt}
+              width={SITE.logo.width}
+              height={SITE.logo.height}
+              priority
+              className={`block w-auto transition-all duration-500 ${scrolled ? "h-10 sm:h-11" : "h-12 sm:h-14"}`}
+            />
+          </Link>
+
+          {/* CENTER: nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {links.map((l) => {
+              const isActive = active === l.id;
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className={`relative rounded-full px-4 py-2 text-[13px] font-medium tracking-[0.02em] transition-colors ${
+                    isActive ? "text-anthracite" : "text-anthracite-soft hover:text-anthracite"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={{ type: "spring", stiffness: 280, damping: 28 }}
+                      className="absolute inset-0 -z-10 rounded-full bg-anthracite/[0.07]"
+                    />
+                  )}
+                  {l.label}
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* RIGHT: CTA + mobile menu */}
+          <div className="flex items-center gap-2">
+            <a
+              href="#kontakt"
+              className="hidden md:inline-flex items-center gap-2 rounded-full bg-anthracite px-5 py-2.5 text-[13px] font-medium tracking-[0.02em] text-cream transition-transform hover:scale-[1.02]"
+            >
+              Projekt anfragen
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <a
+              href={`tel:${SITE.phoneHref}`}
+              className="md:hidden rounded-full bg-anthracite p-2.5 text-cream"
+              aria-label="Anrufen"
+            >
+              <PhoneGlyph />
+            </a>
             <button
               onClick={() => setOpen(true)}
-              className="md:hidden rounded-full border border-ink/15 bg-surface/70 p-2.5 text-ink"
+              className="md:hidden rounded-full border border-anthracite/15 bg-cream/80 p-2.5 text-anthracite backdrop-blur-sm"
               aria-label="Menü öffnen"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
             </button>
-          </div>
-
-          {/* CENTER: logo */}
-          <Link
-            href="/"
-            aria-label={SITE.name}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          >
-            <Image
-              src="/img/logo.png"
-              alt={SITE.name}
-              width={2172}
-              height={724}
-              priority
-              className={`block w-auto transition-all duration-500 ${
-                scrolled ? "h-8 sm:h-9" : "h-9 sm:h-11"
-              }`}
-            />
-          </Link>
-
-          {/* RIGHT: CTA desktop / phone mobile */}
-          <div className="flex items-center gap-2">
-            <a
-              href={`tel:${SITE.phoneHref}`}
-              className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-sm text-surface transition-transform hover:scale-[1.02]"
-            >
-              <PhoneGlyph />
-              Anrufen
-            </a>
-            <a
-              href={`tel:${SITE.phoneHref}`}
-              className="md:hidden rounded-full bg-ink p-2.5 text-surface"
-              aria-label="Anrufen"
-            >
-              <PhoneGlyph />
-            </a>
           </div>
         </div>
       </motion.header>
@@ -147,27 +144,27 @@ export function Nav() {
             className="fixed inset-0 z-[60] md:hidden"
           >
             <div
-              className="absolute inset-0 bg-ink/40 backdrop-blur-md"
+              className="absolute inset-0 bg-anthracite/40 backdrop-blur-md"
               onClick={() => setOpen(false)}
             />
             <motion.nav
-              initial={{ y: -40, opacity: 0 }}
+              initial={{ y: -32, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -40, opacity: 0 }}
+              exit={{ y: -32, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative m-4 glass rounded-3xl p-6"
+              className="relative m-4 rounded-[20px] border border-anthracite/8 bg-cream p-6 shadow-[0_30px_80px_-30px_rgba(37,36,33,0.4)]"
             >
-              <div className="flex items-center justify-between pb-4">
+              <div className="flex items-center justify-between pb-5">
                 <Image
-                  src="/img/logo.png"
-                  alt={SITE.name}
-                  width={2172}
-                  height={724}
-                  className="h-9 w-auto"
+                  src={SITE.logo.src}
+                  alt={SITE.logo.alt}
+                  width={SITE.logo.width}
+                  height={SITE.logo.height}
+                  className="h-11 w-auto"
                 />
                 <button
                   onClick={() => setOpen(false)}
-                  className="rounded-full bg-ink/10 p-2"
+                  className="rounded-full bg-anthracite/8 p-2"
                   aria-label="Menü schließen"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -175,13 +172,14 @@ export function Nav() {
                   </svg>
                 </button>
               </div>
-              <ul className="flex flex-col gap-1 pt-2">
+              <ul className="flex flex-col gap-1 border-t border-line pt-4">
                 {links.map((l) => (
                   <li key={l.href}>
                     <a
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="block rounded-2xl px-4 py-3 font-display text-2xl text-ink transition-colors hover:bg-black/[0.04]"
+                      className="font-display block rounded-[12px] px-4 py-3 text-2xl text-anthracite transition-colors hover:bg-anthracite/5"
+                      style={{ fontWeight: 400 }}
                     >
                       {l.label}
                     </a>
@@ -189,8 +187,18 @@ export function Nav() {
                 ))}
               </ul>
               <a
+                href="#kontakt"
+                onClick={() => setOpen(false)}
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-anthracite py-3.5 text-[14px] font-medium text-cream"
+              >
+                Projekt anfragen
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              <a
                 href={`tel:${SITE.phoneHref}`}
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-ink py-3.5 text-surface"
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-anthracite/15 py-3 text-[13px] text-anthracite-soft"
               >
                 <PhoneGlyph /> {SITE.phoneDisplay}
               </a>

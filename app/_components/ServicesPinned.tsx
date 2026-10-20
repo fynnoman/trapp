@@ -3,13 +3,13 @@
 import { memo } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { SERVICES, type Service } from "../_lib/site";
-import { SplitWords } from "./SplitWords";
 
 const toneClass: Record<Service["tone"], { bg: string; text: string }> = {
-  stone: { bg: "material-plaster", text: "text-ink" },
-  ink: { bg: "material-concrete", text: "text-surface" },
-  clay: { bg: "material-clay", text: "text-surface" },
+  stone: { bg: "material-plaster", text: "text-anthracite" },
+  ink: { bg: "material-concrete", text: "text-cream" },
+  clay: { bg: "material-champagne", text: "text-cream" },
 };
 
 type CardLayout = {
@@ -34,31 +34,31 @@ export function ServicesPinned() {
       className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6"
       aria-label="Leistungen"
     >
-      <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+      <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.24em] text-ink-mute sm:text-[11px] sm:tracking-[0.26em]">
-            Leistungen
+          <div className="flex items-center gap-3">
+            <span className="rule-gold" />
+            <span className="eyebrow">Unsere Leistungen</span>
           </div>
-          <h2 className="mt-4 font-display leading-[0.92] tracking-[-0.03em] text-ink md:text-[96px] md:leading-[0.9]"
-            style={{ fontSize: "clamp(2.4rem, 10.5vw, 6rem)" }}>
-            <SplitWords text="Ein Haus," />
-            <br />
-            <SplitWords
-              text="sechs Oberflächen."
-              stagger={0.05}
-              decorate={(w, i) =>
-                i === 1 ? <span className="italic text-clay">{w}</span> : w
-              }
-            />
+          <h2
+            className="font-display mt-6 text-anthracite"
+            style={{
+              fontSize: "clamp(2rem, 5.4vw, 3.4rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.012em",
+              fontWeight: 400,
+            }}
+          >
+            Gutes Handwerk in jedem Detail.
           </h2>
         </div>
-        <p className="max-w-md text-pretty text-sm text-ink-soft md:max-w-xs md:text-base">
-          Rohbau, Innenausbau, Oberfläche. Was andere auf drei Firmen
-          verteilen, läuft hier über eine Nummer.
+        <p className="max-w-md text-pretty text-[17px] leading-[1.7] text-anthracite-soft md:max-w-sm">
+          Von Putz und Trockenbau über Spanndecken und Maler bis zu Böden und
+          Gerüst. Sauber geplant und präzise ausgeführt.
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-5 md:mt-14 md:grid-cols-12 md:gap-6">
+      <div className="mt-12 grid grid-cols-1 gap-4 sm:gap-5 md:mt-16 md:grid-cols-12 md:gap-6">
         {SERVICES.map((s, i) => (
           <ServiceCard key={s.slug} s={s} layout={CARDS[i]} index={i} />
         ))}
@@ -78,12 +78,10 @@ const ServiceCard = memo(function ServiceCard({
 }) {
   const tone = toneClass[s.tone];
   const titleSize =
-    layout.size === "lg"
-      ? "text-4xl md:text-5xl"
-      : "text-3xl md:text-4xl";
+    layout.size === "lg" ? "text-3xl md:text-[2.4rem]" : "text-2xl md:text-3xl";
   return (
     <motion.article
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
       transition={{
@@ -91,7 +89,7 @@ const ServiceCard = memo(function ServiceCard({
         ease: [0.22, 1, 0.36, 1],
         delay: (index % 2) * 0.08,
       }}
-      className={`group relative overflow-hidden rounded-[24px] md:rounded-[28px] ${layout.col} ${layout.aspect} max-h-[560px] ${tone.text}`}
+      className={`group relative overflow-hidden rounded-[18px] md:rounded-[22px] ${layout.col} ${layout.aspect} max-h-[560px] ${tone.text}`}
     >
       <div className={`absolute inset-0 ${tone.bg}`} />
       <Image
@@ -105,34 +103,43 @@ const ServiceCard = memo(function ServiceCard({
       <div
         className={`pointer-events-none absolute inset-0 ${
           s.tone === "stone"
-            ? "bg-gradient-to-t from-white/55 via-white/5 to-transparent"
-            : "bg-gradient-to-t from-black/75 via-black/20 to-transparent"
+            ? "bg-gradient-to-t from-cream/55 via-cream/5 to-transparent"
+            : "bg-gradient-to-t from-anthracite/75 via-anthracite/25 to-transparent"
         }`}
       />
-      <div className="pointer-events-none absolute inset-4 ring-1 ring-inset ring-white/15 rounded-[18px] md:inset-5 md:rounded-[22px]" />
+      <div className="pointer-events-none absolute inset-4 ring-1 ring-inset ring-white/10 rounded-[14px] md:inset-5 md:rounded-[16px]" />
 
       <div className="relative flex h-full flex-col justify-between p-5 sm:p-7 md:p-9">
         <div className="flex items-center gap-2.5">
           <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
-          <span className="text-[10px] uppercase tracking-[0.22em] opacity-80 sm:text-[11px] sm:tracking-[0.26em]">
+          <span className="text-[10px] font-medium uppercase tracking-[0.28em] opacity-85 sm:text-[11px]">
             {s.lede}
           </span>
         </div>
 
         <div>
           <h3
-            className={`font-display leading-[0.95] tracking-[-0.025em] ${titleSize}`}
+            className={`font-display ${titleSize}`}
+            style={{ lineHeight: 1.12, letterSpacing: "-0.012em", fontWeight: 400 }}
           >
             {s.title}
           </h3>
           {layout.size === "lg" && (
-            <p className="mt-3 max-w-md text-pretty text-sm leading-relaxed opacity-90 md:mt-4 md:text-base">
+            <p className="measure-prose mt-4 text-pretty text-sm leading-relaxed opacity-90 md:text-base">
               {s.body}
             </p>
           )}
+          <Link
+            href="#kontakt"
+            className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.26em] opacity-80 transition-opacity hover:opacity-100"
+          >
+            Beratung anfragen
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
       </div>
-
     </motion.article>
   );
 });

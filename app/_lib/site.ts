@@ -1,6 +1,8 @@
 export const SITE = {
-  name: "GdH Stuckateurmeister & Malerbetrieb",
-  short: "GdH",
+  name: "GDH Christoph Trapp",
+  nameLong: "Fa. GDH Christoph Trapp · Stuckateurmeisterbetrieb",
+  short: "GDH",
+  claim: "Qualität, die bleibt.",
   inhaber: "Christoph Trapp",
   city: "Bous",
   region: "Saarland",
@@ -11,7 +13,15 @@ export const SITE = {
   email: "Gdh.verputz@web.de",
   hours: "Montag bis Freitag, 07:30 bis 18:00",
   ustid: "DE452632565",
-  pillars: ["Ordentlich", "Sauber", "Verbindlich"] as const,
+  foundedYear: 2018,
+  masterExperienceSince: 1997,
+  pillars: ["Qualität", "Vertrauen", "Beständigkeit"] as const,
+  logo: {
+    src: "/img/logo-gdh-gold.png",
+    width: 1916,
+    height: 821,
+    alt: "GDH Christoph Trapp · Stuckateurmeisterbetrieb",
+  },
 };
 
 export type Service = {
@@ -29,9 +39,9 @@ export const SERVICES: Service[] = [
   {
     slug: "putz",
     title: "Innen- und Außenputz",
-    lede: "Oberflächen, die bleiben.",
+    lede: "Oberflächen mit Bestand.",
     body:
-      "Von Grundputz über Reibeputz bis zur fein geriebenen Oberfläche. Innen glatt für klassische Räume, außen robust gegen Wetter und Zeit.",
+      "Vom Grundputz über Reibeputz bis zur fein geriebenen Oberfläche. Innen glatt für klassische Räume, außen robust gegen Wetter und Zeit.",
     tags: ["Reibeputz", "Glättputz", "Fassadenputz", "Dekorputz"],
     tone: "stone",
     image: "/img/plaster-wall.jpg",
@@ -40,7 +50,7 @@ export const SERVICES: Service[] = [
   {
     slug: "trockenbau",
     title: "Trockenbau",
-    lede: "Räume, die sich einfügen.",
+    lede: "Räume, präzise gefügt.",
     body:
       "Wände, Vorsatzschalen, abgehängte Decken, Dachschrägen. Sauber abgeklebt, exakt gespachtelt, bereit für Farbe oder Tapete.",
     tags: ["Ständerwände", "Decken", "Schallschutz", "Dachausbau"],
@@ -50,7 +60,7 @@ export const SERVICES: Service[] = [
   {
     slug: "spanndecken",
     title: "Spanndecken",
-    lede: "Decke neu, ohne Baustelle.",
+    lede: "Decke neu, ohne lange Baustelle.",
     body:
       "Clipso Textilspanndecken in Matt, Satin oder Akustik. Werkseitig zugeschnitten, vor Ort gespannt. Keine Risse, keine lange Trocknung.",
     tags: ["Clipso", "Akustik", "Lichtdecken", "Renovierung"],
@@ -69,10 +79,10 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "boeden",
-    title: "Bodenbelagsarbeiten",
+    title: "Bodenbeläge",
     lede: "Grundiert, gespachtelt, verlegt.",
     body:
-      "Vorbereitung, Spachtelung und Verlegung von Vinyl, Design und textilen Belägen. Für Wohnräume, Praxen und Büros.",
+      "Vorbereitung, Spachtelung und Verlegung von Vinyl, Designböden und textilen Belägen. Für Wohnräume, Praxen und Büros.",
     tags: ["Design", "Vinyl", "Textil", "Spachtelung"],
     tone: "ink",
     image: "/img/room-wood.jpg",

@@ -1,12 +1,14 @@
 import dynamic from "next/dynamic";
 import { HeroMorph } from "./_components/HeroMorph";
+import { BrandPromise } from "./_components/BrandPromise";
 import { ServicesPinned } from "./_components/ServicesPinned";
 import { Trust } from "./_components/Trust";
 
-// Below-fold sections: split into their own JS chunks so the initial bundle
-// stays small. SSR is preserved so there is no visible change at render time.
 const ProcessPinned = dynamic(() =>
   import("./_components/ProcessPinned").then((m) => ({ default: m.ProcessPinned })),
+);
+const Values = dynamic(() =>
+  import("./_components/Values").then((m) => ({ default: m.Values })),
 );
 const Gallery = dynamic(() =>
   import("./_components/Gallery").then((m) => ({ default: m.Gallery })),
@@ -25,9 +27,11 @@ export default function Home() {
   return (
     <>
       <HeroMorph />
+      <BrandPromise />
       <ServicesPinned />
       <Trust />
       <ProcessPinned />
+      <Values />
       <Gallery />
       <About />
       <Faq />

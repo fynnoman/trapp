@@ -1,28 +1,38 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
 import { LenisProvider } from "./_components/LenisProvider";
 import { ScrollProgress } from "./_components/ScrollProgress";
 
-const display = Fraunces({
+const display = localFont({
   variable: "--font-display",
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
   display: "swap",
+  src: [
+    {
+      path: "./_fonts/LibreBaskerville-Variable.ttf",
+      style: "normal",
+      weight: "400 700",
+    },
+    {
+      path: "./_fonts/LibreBaskerville-Italic-Variable.ttf",
+      style: "italic",
+      weight: "400 700",
+    },
+  ],
 });
 
-const sans = Geist({
+const sans = localFont({
   variable: "--font-sans",
-  subsets: ["latin"],
   display: "swap",
-});
-
-const mono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
+  src: [
+    {
+      path: "./_fonts/Manrope-Variable.ttf",
+      style: "normal",
+      weight: "200 800",
+    },
+  ],
 });
 
 export const viewport: Viewport = {
@@ -30,20 +40,20 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#efe9df" },
-    { media: "(prefers-color-scheme: dark)", color: "#16130f" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F3EC" },
+    { media: "(prefers-color-scheme: dark)", color: "#252421" },
   ],
 };
 
 export const metadata: Metadata = {
-  title: "GdH Stuckateurmeister & Malerbetrieb · Christoph Trapp",
+  title: "GDH Christoph Trapp · Stuckateurmeisterbetrieb",
   description:
-    "Stuckateurmeister aus Bous. Putz, Trockenbau, Spanndecken, Malerarbeiten, Böden und Gerüstbau. Saubere Ausführung, persönliche Beratung.",
+    "Stuckateurmeisterbetrieb aus Bous. Innen- und Außenputz, Trockenbau, Spanndecken, Maler, Böden und Gerüst. Qualität, die bleibt.",
   metadataBase: new URL("https://gdh-verputz.de"),
   openGraph: {
-    title: "GdH Stuckateurmeister & Malerbetrieb",
+    title: "GDH Christoph Trapp · Stuckateurmeisterbetrieb",
     description:
-      "Stuckateurmeister aus Bous. Putz, Trockenbau, Spanndecken, Maler, Böden, Gerüst.",
+      "Handwerkliche Präzision, saubere Ausführung und fachkundige Beratung für Ihr Zuhause.",
     locale: "de_DE",
     type: "website",
   },
@@ -53,7 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="de"
-      className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <LenisProvider>
