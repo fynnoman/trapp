@@ -1,19 +1,38 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
+import { useRef } from "react";
 import Image from "next/image";
 import { IMG, SITE } from "../_lib/site";
 import { MagneticButton } from "./MagneticButton";
+import { useIsMobile } from "../_lib/useIsMobile";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function About() {
+  const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const isMobile = useIsMobile();
+  const skipMotion = reduced || isMobile;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const portraitY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const portraitScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
 
   return (
     <section
       id="betrieb"
+      ref={ref}
       className="relative mt-24 overflow-hidden sm:mt-40"
     >
       <div className="relative mx-auto grid max-w-6xl gap-12 px-5 sm:gap-16 sm:px-6 md:grid-cols-[1.05fr_1fr] md:gap-20">
@@ -80,20 +99,25 @@ export function About() {
 
         <div className="order-2 md:order-2">
           <motion.div
-            initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
-            whileInView={reduced ? { opacity: 1 } : { opacity: 1, scale: 1 }}
+            initial={skipMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
+            whileInView={skipMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
-            transition={{ duration: 1.1, ease: EASE }}
+            transition={{ duration: skipMotion ? 0.6 : 1.1, ease: EASE }}
             className="relative aspect-[4/5] w-full sm:aspect-[3/4]"
           >
             <div className="absolute inset-0 overflow-hidden rounded-[18px] sm:rounded-[22px]">
-              <Image
-                src={IMG.aboutPortrait}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, 42vw"
-                className="object-cover object-center"
-              />
+              <motion.div
+                style={skipMotion ? undefined : { y: portraitY, scale: portraitScale }}
+                className="absolute inset-0 will-change-transform"
+              >
+                <Image
+                  src={IMG.aboutPortrait}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 42vw"
+                  className="object-cover object-center"
+                />
+              </motion.div>
               <ImagePlaceholder />
               <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10 rounded-[18px] sm:rounded-[22px]" />
             </div>

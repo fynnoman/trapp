@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { IMG } from "../_lib/site";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
@@ -9,10 +10,18 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function BrandPromise() {
   const reduced = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.05, 1, 1.05]);
 
   return (
     <section
       id="anspruch"
+      ref={ref}
       aria-label="Markenversprechen"
       className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6"
     >
@@ -63,14 +72,19 @@ export function BrandPromise() {
           transition={{ duration: 1.1, ease: EASE }}
           className="relative aspect-[4/5] overflow-hidden rounded-[18px] shadow-[0_30px_80px_-40px_rgba(37,36,33,0.4)] sm:rounded-[22px]"
         >
-          <Image
-            src={IMG.statement}
-            alt=""
-            fill
-            sizes="(max-width: 768px) 100vw, 44vw"
-            loading="lazy"
-            className="object-cover object-center"
-          />
+          <motion.div
+            style={reduced ? undefined : { y: imgY, scale: imgScale }}
+            className="absolute inset-0 will-change-transform"
+          >
+            <Image
+              src={IMG.statement}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 44vw"
+              loading="lazy"
+              className="object-cover object-center"
+            />
+          </motion.div>
           <ImagePlaceholder />
           <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10" />
         </motion.div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import Image from "next/image";
 import { IMG, SITE } from "../_lib/site";
 import { MagneticButton } from "./MagneticButton";
@@ -10,9 +11,19 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function HeroMorph() {
   const reduced = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.6, 0]);
 
   return (
     <section
+      ref={ref}
       className="relative isolate overflow-hidden bg-cream"
       aria-label="Startansicht"
     >
@@ -21,7 +32,10 @@ export function HeroMorph() {
 
       <div className="relative mx-auto flex min-h-[100dvh] max-w-7xl flex-col px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:grid lg:min-h-[92vh] lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16 lg:pt-36 lg:pb-24">
         {/* LEFT: editorial copy */}
-        <div className="relative flex max-w-[640px] flex-col">
+        <motion.div
+          style={reduced ? undefined : { y: copyY, opacity: copyOpacity }}
+          className="relative flex max-w-[640px] flex-col will-change-transform"
+        >
           <motion.div
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
             animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -98,7 +112,7 @@ export function HeroMorph() {
               </li>
             ))}
           </motion.ul>
-        </div>
+        </motion.div>
 
         {/* RIGHT: editorial image */}
         <div className="relative mt-14 lg:mt-0">
@@ -108,15 +122,20 @@ export function HeroMorph() {
             transition={{ duration: 1.1, ease: EASE, delay: 0.25 }}
             className="relative aspect-[4/5] w-full overflow-hidden rounded-[18px] shadow-[0_30px_80px_-40px_rgba(37,36,33,0.4)] sm:rounded-[22px] lg:aspect-[3/4]"
           >
-            <Image
-              src={IMG.hero}
-              alt="Handwerkliche Oberfläche aus dem Stuckateurmeisterbetrieb GDH"
-              fill
-              priority
-              quality={92}
-              sizes="(max-width: 1024px) 100vw, 48vw"
-              className="object-cover object-center"
-            />
+            <motion.div
+              style={reduced ? undefined : { y: imgY, scale: imgScale }}
+              className="absolute inset-0 will-change-transform"
+            >
+              <Image
+                src={IMG.hero}
+                alt="Handwerkliche Oberfläche aus dem Stuckateurmeisterbetrieb GDH"
+                fill
+                priority
+                quality={92}
+                sizes="(max-width: 1024px) 100vw, 48vw"
+                className="object-cover object-center"
+              />
+            </motion.div>
             <ImagePlaceholder />
             <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10" />
 

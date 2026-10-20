@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { HeroMorph } from "./_components/HeroMorph";
+import { Manifest } from "./_components/Manifest";
 import { BrandPromise } from "./_components/BrandPromise";
 import { ServicesPinned } from "./_components/ServicesPinned";
 import { Trust } from "./_components/Trust";
@@ -27,6 +28,7 @@ export default function Home() {
   return (
     <>
       <HeroMorph />
+      <Manifest />
       <BrandPromise />
       <ServicesPinned />
       <Trust />
