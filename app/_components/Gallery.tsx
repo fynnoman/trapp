@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { IMG } from "../_lib/site";
 import { useIsMobile } from "../_lib/useIsMobile";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const items = [
   {
@@ -63,7 +62,6 @@ function CardInner({ it }: { it: (typeof items)[number] }) {
         loading="lazy"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
-      <ImagePlaceholder />
       <div className="pointer-events-none absolute inset-4 z-30 ring-1 ring-inset ring-white/10 rounded-[14px] sm:inset-6 sm:rounded-[16px]" />
 
       <div className="relative z-30 flex h-full flex-col justify-between p-5 sm:p-7 md:p-9">

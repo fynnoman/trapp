@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { IMG } from "../_lib/site";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -85,7 +84,6 @@ export function BrandPromise() {
               className="object-cover object-center"
             />
           </motion.div>
-          <ImagePlaceholder />
           <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10" />
         </motion.div>
       </div>

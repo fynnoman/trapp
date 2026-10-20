@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { SERVICES, type Service } from "../_lib/site";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 import { useIsMobile } from "../_lib/useIsMobile";
 
 const toneClass: Record<Service["tone"], { bg: string; text: string }> = {
@@ -100,7 +99,6 @@ function ServiceMobileCard({ s, index }: { s: Service; index: number }) {
         loading={index < 2 ? "eager" : "lazy"}
         className="object-cover"
       />
-      <ImagePlaceholder />
       <div className="pointer-events-none absolute inset-4 z-30 ring-1 ring-inset ring-white/10 rounded-[14px]" />
       <div className="relative z-30 flex h-full flex-col justify-between p-6">
         <div className="flex items-center gap-2.5">
@@ -167,7 +165,6 @@ const ServiceCard = memo(function ServiceCard({
         loading="lazy"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
       />
-      <ImagePlaceholder />
       <div className="pointer-events-none absolute inset-5 z-30 ring-1 ring-inset ring-white/10 rounded-[16px]" />
 
       <div className="relative z-30 flex h-full flex-col justify-between p-9">

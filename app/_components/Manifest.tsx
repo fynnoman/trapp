@@ -12,7 +12,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { IMG } from "../_lib/site";
 import { useIsMobile } from "../_lib/useIsMobile";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const words = [
   {
@@ -80,7 +79,6 @@ function ManifestInner({ mobile = false }: { mobile?: boolean }) {
           <div className="absolute inset-0 bg-gradient-to-b from-anthracite/50 via-anthracite/35 to-anthracite/85" />
         </motion.div>
 
-        <ImagePlaceholder />
 
         {/* top meta row */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-40 flex items-center justify-between px-5 pt-28 sm:px-12 sm:pt-32">

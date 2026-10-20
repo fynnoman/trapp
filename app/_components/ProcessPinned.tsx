@@ -12,7 +12,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { IMG } from "../_lib/site";
 import { useIsMobile } from "../_lib/useIsMobile";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -110,7 +109,6 @@ function ProcessMobile() {
                 loading={i === 0 ? "eager" : "lazy"}
                 className="object-cover object-center"
               />
-              <ImagePlaceholder />
               <div className="absolute inset-x-0 bottom-0 z-30 p-5">
                 <div className="flex items-center gap-2.5 pb-3">
                   <span className="h-1.5 w-1.5 rounded-full bg-champagne" />
@@ -167,7 +165,6 @@ function ProcessDesktop() {
         ))}
 
         {/* ein einziges großes Platzhalter-Label über allen Hintergründen */}
-        <ImagePlaceholder />
 
         {/* top meta row */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-40 flex items-center justify-between px-8 pt-28 sm:px-12 sm:pt-32">

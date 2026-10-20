@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { IMG, SITE } from "../_lib/site";
 import { MagneticButton } from "./MagneticButton";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 import { useIsMobile } from "../_lib/useIsMobile";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -51,7 +50,6 @@ function HeroMobile() {
         />
       </motion.div>
 
-      <ImagePlaceholder />
 
       <div className="pointer-events-none absolute inset-0 z-30 bg-gradient-to-b from-anthracite/50 via-anthracite/40 to-anthracite" />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-40 bg-gradient-to-b from-anthracite/70 to-transparent" />
@@ -272,7 +270,6 @@ function HeroDesktop() {
                 className="object-cover object-center"
               />
             </motion.div>
-            <ImagePlaceholder />
             <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10" />
 
             {/* zarte Bildunterschrift */}

@@ -11,7 +11,6 @@ import Image from "next/image";
 import { IMG, SITE } from "../_lib/site";
 import { MagneticButton } from "./MagneticButton";
 import { useIsMobile } from "../_lib/useIsMobile";
-import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -118,7 +117,6 @@ export function About() {
                   className="object-cover object-center"
                 />
               </motion.div>
-              <ImagePlaceholder />
               <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10 rounded-[18px] sm:rounded-[22px]" />
             </div>
 
