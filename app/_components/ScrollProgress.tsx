@@ -1,14 +1,18 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "motion/react";
+import { useIsMobile } from "../_lib/useIsMobile";
 
 export function ScrollProgress() {
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 24,
     mass: 0.2,
   });
+
+  if (isMobile) return null;
 
   return (
     <motion.div

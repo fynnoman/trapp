@@ -11,6 +11,7 @@ import {
 import { useRef } from "react";
 import Image from "next/image";
 import { IMG } from "../_lib/site";
+import { useIsMobile } from "../_lib/useIsMobile";
 
 const stages = [
   {
@@ -40,6 +41,78 @@ const stages = [
 ];
 
 export function ProcessPinned() {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return <ProcessMobile />;
+  }
+
+  return <ProcessDesktop />;
+}
+
+function ProcessMobile() {
+  return (
+    <section
+      id="handwerk"
+      className="relative mt-24"
+      aria-label="Vom Aufmaß zur Übergabe"
+    >
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="text-[10px] uppercase tracking-[0.26em] text-ink-mute">
+          Vom Aufmaß zur Übergabe
+        </div>
+        <h2 className="mt-4 font-display leading-[0.95] tracking-[-0.03em] text-ink"
+          style={{ fontSize: "clamp(2.4rem, 11vw, 4rem)" }}>
+          Handwerk,
+          <br />
+          <span className="italic text-clay">kein Verwalten.</span>
+        </h2>
+      </div>
+
+      <ul className="mt-10 flex flex-col gap-5 px-5">
+        {stages.map((s, i) => (
+          <motion.li
+            key={s.key}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative overflow-hidden rounded-[24px] bg-ink text-surface"
+          >
+            <div className="relative h-[52vh] max-h-[480px] w-full">
+              <Image
+                src={s.image}
+                alt=""
+                fill
+                sizes="100vw"
+                loading={i === 0 ? "eager" : "lazy"}
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/35 to-ink/35" />
+              <div className="pointer-events-none absolute inset-4 ring-1 ring-inset ring-white/10 rounded-[18px]" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <div className="flex items-center gap-2.5 pb-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-ochre" />
+                  <span className="text-[10px] uppercase tracking-[0.24em] text-surface/75">
+                    {s.kicker}
+                  </span>
+                </div>
+                <h3 className="font-display text-3xl leading-tight tracking-tight text-surface">
+                  {s.title}
+                </h3>
+                <p className="mt-3 text-pretty text-sm text-surface/85">
+                  {s.body}
+                </p>
+              </div>
+            </div>
+          </motion.li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function ProcessDesktop() {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({

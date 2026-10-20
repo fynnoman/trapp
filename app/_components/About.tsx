@@ -11,10 +11,13 @@ import Image from "next/image";
 import { IMG, SITE } from "../_lib/site";
 import { SplitWords } from "./SplitWords";
 import { MagneticButton } from "./MagneticButton";
+import { useIsMobile } from "../_lib/useIsMobile";
 
 export function About() {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const isMobile = useIsMobile();
+  const skipMotion = reduced || isMobile;
 
   const { scrollYProgress: sectionProgress } = useScroll({
     target: ref,
@@ -36,7 +39,7 @@ export function About() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-16 overflow-hidden whitespace-nowrap text-center font-display leading-none tracking-[-0.04em] text-ink/[0.05] will-change-transform sm:top-24 md:text-[220px]"
         style={{
-          ...(reduced ? {} : { y: stripY }),
+          ...(skipMotion ? {} : { y: stripY }),
           fontSize: "clamp(5rem, 18vw, 13.75rem)",
         }}
       >
@@ -92,15 +95,15 @@ export function About() {
         {/* portrait panel */}
         <div className="order-2 md:order-2">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={skipMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+            whileInView={skipMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-[4/5] w-full will-change-transform sm:aspect-[3/4]"
+            transition={{ duration: skipMotion ? 0.6 : 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative aspect-[4/5] w-full sm:aspect-[3/4]"
           >
             <motion.div
-              style={reduced ? undefined : { y: portraitY }}
-              className="absolute inset-0 overflow-hidden rounded-[28px] will-change-transform sm:rounded-[36px]"
+              style={skipMotion ? undefined : { y: portraitY }}
+              className="absolute inset-0 overflow-hidden rounded-[28px] sm:rounded-[36px]"
             >
               <Image
                 src={IMG.aboutPortrait}

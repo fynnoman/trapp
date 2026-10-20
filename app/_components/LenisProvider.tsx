@@ -8,6 +8,12 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Skip Lenis on mobile / touch devices: native scroll is already smooth,
+    // and the RAF loop combined with scroll-linked animations tanks FPS.
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    if (isMobile || isCoarsePointer) return;
+
     const lenis = new Lenis({
       lerp: 0.12,
       smoothWheel: true,
