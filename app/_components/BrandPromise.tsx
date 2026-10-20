@@ -23,7 +23,7 @@ export function BrandPromise() {
       id="anspruch"
       ref={ref}
       aria-label="Markenversprechen"
-      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6"
+      className="relative mx-auto mt-20 max-w-6xl px-5 sm:mt-32 sm:px-6"
     >
       <div className="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-20">
         <div>

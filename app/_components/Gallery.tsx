@@ -97,7 +97,7 @@ export function Gallery() {
     <section
       id="projekte"
       aria-label="Projekte und Ergebnisse"
-      className="relative mt-24 overflow-hidden sm:mt-32"
+      className="relative mt-20 overflow-hidden sm:mt-32"
       ref={ref}
     >
       <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:px-6">

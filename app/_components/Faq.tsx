@@ -32,7 +32,7 @@ export function Faq() {
   return (
     <section
       id="faq"
-      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-40 sm:px-6"
+      className="relative mx-auto mt-20 max-w-6xl px-5 sm:mt-40 sm:px-6"
       aria-label="Häufige Fragen"
     >
       <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">

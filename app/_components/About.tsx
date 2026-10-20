@@ -33,7 +33,7 @@ export function About() {
     <section
       id="betrieb"
       ref={ref}
-      className="relative mt-24 overflow-hidden sm:mt-40"
+      className="relative mt-20 overflow-hidden sm:mt-40"
     >
       <div className="relative mx-auto grid max-w-6xl gap-12 px-5 sm:gap-16 sm:px-6 md:grid-cols-[1.05fr_1fr] md:gap-20">
         <div className="order-1 md:order-1">

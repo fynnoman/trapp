@@ -17,7 +17,7 @@ export function Contact() {
   };
 
   return (
-    <section id="kontakt" className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-40 sm:px-6">
+    <section id="kontakt" className="relative mx-auto mt-20 max-w-6xl px-5 sm:mt-40 sm:px-6">
       <div className="relative overflow-hidden rounded-[22px] bg-cream-deep sm:rounded-[28px]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_80%_15%,rgba(180,154,114,0.22),transparent_65%),radial-gradient(50%_50%_at_10%_90%,rgba(37,36,33,0.08),transparent_60%)]" />
         <div className="pointer-events-none absolute inset-4 ring-1 ring-inset ring-anthracite/10 rounded-[18px] sm:inset-6 sm:rounded-[22px] md:inset-10" />

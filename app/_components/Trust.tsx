@@ -17,7 +17,7 @@ export function Trust() {
   return (
     <section
       aria-label="Gewerke"
-      className="relative mt-24 overflow-hidden border-y border-line bg-cream-deep/40 py-8 sm:mt-32 sm:py-10"
+      className="relative mt-20 overflow-hidden border-y border-line bg-cream-deep/40 py-7 sm:mt-32 sm:py-10"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-cream to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent z-10" />

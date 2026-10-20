@@ -29,7 +29,7 @@ export function Values() {
     <section
       id="werte"
       aria-label="Markenwerte"
-      className="relative mx-auto mt-24 max-w-6xl px-5 sm:mt-32 sm:px-6"
+      className="relative mx-auto mt-20 max-w-6xl px-5 sm:mt-32 sm:px-6"
     >
       <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
         <div>

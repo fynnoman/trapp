@@ -83,7 +83,7 @@ function ProcessMobile() {
     <section
       id="handwerk"
       aria-label="Vom Aufmaß zur Übergabe"
-      className="relative mx-auto mt-24 max-w-6xl px-5 sm:px-6"
+      className="relative mx-auto mt-20 max-w-6xl px-5 sm:mt-32 sm:px-6"
     >
       <Headline />
       <p className="mt-6 max-w-xl text-pretty text-[17px] leading-[1.7] text-anthracite-soft">
