@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { SERVICES, type Service } from "../_lib/site";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const toneClass: Record<Service["tone"], { bg: string; text: string }> = {
   stone: { bg: "material-plaster", text: "text-anthracite" },
@@ -100,16 +101,10 @@ const ServiceCard = memo(function ServiceCard({
         loading="lazy"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
       />
-      <div
-        className={`pointer-events-none absolute inset-0 ${
-          s.tone === "stone"
-            ? "bg-gradient-to-t from-cream/55 via-cream/5 to-transparent"
-            : "bg-gradient-to-t from-anthracite/75 via-anthracite/25 to-transparent"
-        }`}
-      />
-      <div className="pointer-events-none absolute inset-4 ring-1 ring-inset ring-white/10 rounded-[14px] md:inset-5 md:rounded-[16px]" />
+      <ImagePlaceholder />
+      <div className="pointer-events-none absolute inset-4 z-30 ring-1 ring-inset ring-white/10 rounded-[14px] md:inset-5 md:rounded-[16px]" />
 
-      <div className="relative flex h-full flex-col justify-between p-5 sm:p-7 md:p-9">
+      <div className="relative z-30 flex h-full flex-col justify-between p-5 sm:p-7 md:p-9">
         <div className="flex items-center gap-2.5">
           <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
           <span className="text-[10px] font-medium uppercase tracking-[0.28em] opacity-85 sm:text-[11px]">

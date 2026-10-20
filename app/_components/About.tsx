@@ -1,36 +1,19 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-} from "motion/react";
-import { useRef } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { IMG, SITE } from "../_lib/site";
 import { MagneticButton } from "./MagneticButton";
-import { useIsMobile } from "../_lib/useIsMobile";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function About() {
-  const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const isMobile = useIsMobile();
-  const skipMotion = reduced || isMobile;
-
-  const { scrollYProgress: sectionProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const portraitY = useTransform(sectionProgress, [0, 1], [30, -30]);
 
   return (
     <section
       id="betrieb"
-      ref={ref}
       className="relative mt-24 overflow-hidden sm:mt-40"
     >
       <div className="relative mx-auto grid max-w-6xl gap-12 px-5 sm:gap-16 sm:px-6 md:grid-cols-[1.05fr_1fr] md:gap-20">
@@ -97,16 +80,13 @@ export function About() {
 
         <div className="order-2 md:order-2">
           <motion.div
-            initial={skipMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
-            whileInView={skipMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
+            initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
+            whileInView={reduced ? { opacity: 1 } : { opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
-            transition={{ duration: skipMotion ? 0.6 : 1.1, ease: EASE }}
+            transition={{ duration: 1.1, ease: EASE }}
             className="relative aspect-[4/5] w-full sm:aspect-[3/4]"
           >
-            <motion.div
-              style={skipMotion ? undefined : { y: portraitY }}
-              className="absolute inset-0 overflow-hidden rounded-[18px] sm:rounded-[22px]"
-            >
+            <div className="absolute inset-0 overflow-hidden rounded-[18px] sm:rounded-[22px]">
               <Image
                 src={IMG.aboutPortrait}
                 alt=""
@@ -114,12 +94,12 @@ export function About() {
                 sizes="(max-width: 768px) 100vw, 42vw"
                 className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-anthracite/55 via-anthracite/0 to-transparent" />
-              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-anthracite/10 rounded-[18px] sm:rounded-[22px]" />
-            </motion.div>
+              <ImagePlaceholder />
+              <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10 rounded-[18px] sm:rounded-[22px]" />
+            </div>
 
             {/* floating card */}
-            <div className="absolute bottom-5 left-5 right-5 rounded-[14px] border border-anthracite/8 bg-cream/95 px-5 py-4 shadow-[0_18px_48px_-24px_rgba(37,36,33,0.3)] sm:bottom-7 sm:left-7 sm:right-7 sm:px-6 sm:py-5">
+            <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[14px] border border-anthracite/8 bg-cream/95 px-5 py-4 shadow-[0_18px_48px_-24px_rgba(37,36,33,0.3)] sm:bottom-7 sm:left-7 sm:right-7 sm:px-6 sm:py-5">
               <div className="flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <div className="text-[10px] font-medium uppercase tracking-[0.3em] text-anthracite-mute">

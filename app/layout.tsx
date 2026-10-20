@@ -3,8 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
-import { LenisProvider } from "./_components/LenisProvider";
-import { ScrollProgress } from "./_components/ScrollProgress";
 
 const display = localFont({
   variable: "--font-display",
@@ -66,12 +64,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden">
-        <LenisProvider>
-          <ScrollProgress />
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </LenisProvider>
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

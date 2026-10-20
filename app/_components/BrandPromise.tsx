@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { IMG } from "../_lib/site";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -70,8 +71,8 @@ export function BrandPromise() {
             loading="lazy"
             className="object-cover object-center"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-anthracite/35 via-transparent to-transparent" />
-          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-anthracite/10" />
+          <ImagePlaceholder />
+          <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10" />
         </motion.div>
       </div>
     </section>
