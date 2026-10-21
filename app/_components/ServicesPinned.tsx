@@ -65,8 +65,8 @@ export function ServicesPinned() {
 
       {isMobile ? (
         <ul
-          className="no-scrollbar mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-2"
-          style={{ scrollPaddingLeft: "1.25rem" }}
+          className="no-scrollbar mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-5 pb-3"
+          style={{ scrollPaddingLeft: "1.25rem", scrollPaddingRight: "1.25rem" }}
         >
           {SERVICES.map((s, i) => (
             <li
@@ -76,6 +76,7 @@ export function ServicesPinned() {
               <ServiceMobileCard s={s} index={i} />
             </li>
           ))}
+          <li aria-hidden className="w-2 flex-shrink-0" />
         </ul>
       ) : (
         <div className="mx-auto mt-16 grid max-w-6xl grid-cols-12 gap-6 px-6">

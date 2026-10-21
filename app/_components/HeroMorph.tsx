@@ -22,10 +22,10 @@ function HeroMobile() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, -24]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, -16]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.65, 1], [1, 0.85, 0.1]);
 
   return (
     <section
@@ -56,12 +56,9 @@ function HeroMobile() {
 
       <motion.div
         style={reduced ? undefined : { y: copyY, opacity: copyOpacity }}
-        className="relative z-40 flex flex-col justify-end px-6 pb-10 pt-32 will-change-transform"
-        // ensure the inner column fills the viewport
-        // so the text sits at the bottom while visible
-        // (grid would also work)
+        className="relative z-40 flex flex-col justify-end px-6 pb-10 pt-28 will-change-transform"
       >
-        <div className="min-h-[calc(100dvh-10rem)] flex flex-col justify-end">
+        <div className="flex min-h-[calc(100dvh-9rem)] flex-col justify-end">
           <motion.div
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
             animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -107,14 +104,14 @@ function HeroMobile() {
           >
             <a
               href="#leistungen"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-cream px-6 py-4 text-[14px] font-medium tracking-[0.02em] text-anthracite"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-cream px-6 py-4 text-[15px] font-medium tracking-[0.02em] text-anthracite shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)] active:scale-[0.98] transition-transform"
             >
               Leistungen entdecken
               <Arrow />
             </a>
             <a
               href="#kontakt"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-4 text-[14px] font-medium tracking-[0.02em] text-cream"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cream/35 bg-cream/5 px-6 py-4 text-[15px] font-medium tracking-[0.02em] text-cream backdrop-blur-md active:scale-[0.98] transition-transform"
             >
               Projekt anfragen
               <Arrow />

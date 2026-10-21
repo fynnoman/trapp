@@ -51,7 +51,7 @@ const items = [
   },
 ];
 
-function CardInner({ it }: { it: (typeof items)[number] }) {
+function CardInner({ it, eager = false }: { it: (typeof items)[number]; eager?: boolean }) {
   return (
     <>
       <Image
@@ -59,7 +59,8 @@ function CardInner({ it }: { it: (typeof items)[number] }) {
         alt=""
         fill
         sizes="(max-width: 768px) 85vw, 42vw"
-        loading="lazy"
+        loading={eager ? "eager" : "lazy"}
+        priority={eager}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
       <div className="pointer-events-none absolute inset-4 z-30 ring-1 ring-inset ring-white/10 rounded-[14px] sm:inset-6 sm:rounded-[16px]" />
@@ -116,29 +117,30 @@ export function Gallery() {
 
       {isMobile ? (
         <ul
-          className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-2"
-          style={{ scrollPaddingLeft: "1.25rem" }}
+          className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-5 pb-3"
+          style={{ scrollPaddingLeft: "1.25rem", scrollPaddingRight: "1.25rem" }}
         >
-          {items.map((it) => (
+          {items.map((it, i) => (
             <li
               key={it.label}
               className={`group relative h-[52vh] w-[82vw] flex-shrink-0 snap-start overflow-hidden rounded-[18px] max-h-[520px] ${it.accent} ${it.text}`}
             >
-              <CardInner it={it} />
+              <CardInner it={it} eager={i === 0} />
             </li>
           ))}
+          <li aria-hidden className="w-2 flex-shrink-0" />
         </ul>
       ) : (
         <motion.ul
           style={{ x }}
           className="mt-12 flex gap-6 pl-6 will-change-transform md:gap-8 md:pl-12"
         >
-          {items.map((it) => (
+          {items.map((it, i) => (
             <li
               key={it.label}
               className={`group relative h-[52vh] w-[66vw] flex-shrink-0 overflow-hidden rounded-[22px] max-h-[520px] md:h-[60vh] md:w-[42vw] lg:w-[36vw] ${it.accent} ${it.text}`}
             >
-              <CardInner it={it} />
+              <CardInner it={it} eager={i === 0} />
             </li>
           ))}
         </motion.ul>

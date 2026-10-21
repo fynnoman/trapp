@@ -117,14 +117,14 @@ export function Nav() {
             </a>
             <a
               href={`tel:${SITE.phoneHref}`}
-              className={`md:hidden rounded-full p-2.5 transition-colors ${scrolled ? "bg-anthracite text-cream" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
+              className={`md:hidden rounded-full p-3 transition-colors ${scrolled ? "bg-anthracite text-cream" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
               aria-label="Anrufen"
             >
               <PhoneGlyph />
             </a>
             <button
               onClick={() => setOpen(true)}
-              className={`md:hidden rounded-full p-2.5 transition-colors ${scrolled ? "border border-anthracite/15 bg-cream/80 text-anthracite backdrop-blur-sm" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
+              className={`md:hidden rounded-full p-3 transition-colors ${scrolled ? "border border-anthracite/15 bg-cream/80 text-anthracite backdrop-blur-sm" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
               aria-label="Menü öffnen"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">

@@ -105,7 +105,7 @@ function ContactRow({
       </div>
       <button
         onClick={onCopy}
-        className="flex-shrink-0 rounded-full border border-anthracite/15 bg-cream px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.26em] text-anthracite-soft transition-colors hover:bg-anthracite hover:text-cream"
+        className="flex-shrink-0 rounded-full border border-anthracite/15 bg-cream px-4 py-2 text-[10px] font-medium uppercase tracking-[0.26em] text-anthracite-soft transition-colors hover:bg-anthracite hover:text-cream"
       >
         {copied ? "Kopiert" : "Kopieren"}
       </button>
@@ -195,7 +195,7 @@ function Field({
   as?: "input" | "textarea";
 }) {
   const base =
-    "mt-1 w-full rounded-[12px] border border-anthracite/15 bg-cream px-4 py-3 text-[15px] text-anthracite placeholder:text-anthracite-mute focus:border-champagne/60 focus:outline-none focus:ring-2 focus:ring-champagne/25";
+    "mt-1 w-full rounded-[12px] border border-anthracite/15 bg-cream px-4 py-3 text-[16px] text-anthracite placeholder:text-anthracite-mute focus:border-champagne/60 focus:outline-none focus:ring-2 focus:ring-champagne/25";
   return (
     <label className="block">
       <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-anthracite-mute">

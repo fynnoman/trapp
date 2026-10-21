@@ -49,10 +49,10 @@ function ManifestInner({ mobile = false }: { mobile?: boolean }) {
     mass: 0.15,
   });
 
-  const bgScale = useTransform(progress, [0, 1], [1.08, 1]);
-  const bgY = useTransform(progress, [0, 1], ["-4%", "4%"]);
+  const bgScale = useTransform(progress, [0, 1], mobile ? [1.05, 1] : [1.08, 1]);
+  const bgY = useTransform(progress, [0, 1], mobile ? ["0%", "0%"] : ["-4%", "4%"]);
 
-  const stageHeight = mobile ? 80 : 100;
+  const stageHeight = mobile ? 70 : 100;
 
   return (
     <section
@@ -114,8 +114,8 @@ function ManifestInner({ mobile = false }: { mobile?: boolean }) {
           </div>
         </div>
 
-        {/* progress rail */}
-        <div className="pointer-events-none absolute left-5 top-1/2 z-40 -translate-y-1/2 md:left-12">
+        {/* progress rail (desktop/tablet only) */}
+        <div className="pointer-events-none absolute left-5 top-1/2 z-40 hidden -translate-y-1/2 sm:block md:left-12">
           <div className="relative h-40 w-[2px] bg-cream/15 sm:h-56">
             <motion.div
               style={{ scaleY: progress }}
