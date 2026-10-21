@@ -271,30 +271,6 @@ function HeroDesktop() {
               />
             </motion.div>
             <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10" />
-
-            {/* zarte Bildunterschrift */}
-            <div className="absolute bottom-7 left-7 right-7 z-30 flex items-end justify-between gap-4 text-cream">
-              <div>
-                <div className="text-[10px] font-medium uppercase tracking-[0.3em] text-cream/80">
-                  Handwerk
-                </div>
-                <div className="mt-1 font-display text-2xl">
-                  Stuckateurmeister
-                </div>
-              </div>
-              <span className="rule-gold !w-10" />
-            </div>
-          </motion.div>
-
-          {/* floating detail accent */}
-          <motion.div
-            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: EASE, delay: 0.5 }}
-            className="pointer-events-none absolute -bottom-8 -left-8 flex items-center gap-3 rounded-full border border-anthracite/10 bg-cream/90 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.26em] text-anthracite shadow-[0_12px_40px_-18px_rgba(37,36,33,0.35)]"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-champagne" />
-            Meisterbetrieb · Bous
           </motion.div>
         </div>
       </div>

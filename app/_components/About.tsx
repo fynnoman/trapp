@@ -119,26 +119,6 @@ export function About() {
               </motion.div>
               <div className="pointer-events-none absolute inset-0 z-30 ring-1 ring-inset ring-anthracite/10 rounded-[18px] sm:rounded-[22px]" />
             </div>
-
-            {/* floating card */}
-            <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[14px] border border-anthracite/8 bg-cream/95 px-5 py-4 shadow-[0_18px_48px_-24px_rgba(37,36,33,0.3)] sm:bottom-7 sm:left-7 sm:right-7 sm:px-6 sm:py-5">
-              <div className="flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="text-[10px] font-medium uppercase tracking-[0.3em] text-anthracite-mute">
-                    Inhaber
-                  </div>
-                  <div className="font-display mt-1 truncate text-xl text-anthracite sm:text-2xl" style={{ fontWeight: 400 }}>
-                    {SITE.inhaber}
-                  </div>
-                </div>
-                <a
-                  href={`tel:${SITE.phoneHref}`}
-                  className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-full bg-anthracite px-4 py-2 text-[11px] font-medium text-cream transition-colors hover:bg-anthracite-soft"
-                >
-                  Direkt sprechen
-                </a>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
