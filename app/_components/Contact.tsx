@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { SITE } from "../_lib/site";
-import { MagneticButton } from "./MagneticButton";
 
 export function Contact() {
   const [copied, setCopied] = useState<"phone" | "mail" | null>(null);
@@ -223,11 +222,10 @@ function ContactForm() {
         </label>
       </div>
 
-      <MagneticButton
-        as="button"
+      <button
         type="submit"
         aria-disabled={disabled || undefined}
-        className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-anthracite px-6 py-3.5 text-[14px] font-medium tracking-[0.02em] text-cream ${disabled ? "opacity-70" : ""}`}
+        className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-anthracite px-6 py-3.5 text-[14px] font-medium tracking-[0.02em] text-cream transition-opacity ${disabled ? "opacity-70" : "hover:opacity-90"}`}
       >
         {state === "sending"
           ? "Wird gesendet …"
@@ -237,7 +235,7 @@ function ContactForm() {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </MagneticButton>
+      </button>
 
       {state === "sent" ? (
         <p className="mt-3 text-center text-[12px] text-anthracite">
