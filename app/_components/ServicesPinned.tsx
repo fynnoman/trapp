@@ -3,7 +3,6 @@
 import { memo } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
 import { SERVICES, type Service } from "../_lib/site";
 import { useIsMobile } from "../_lib/useIsMobile";
 
@@ -101,34 +100,6 @@ function ServiceMobileCard({ s, index }: { s: Service; index: number }) {
         className="object-cover"
       />
       <div className="pointer-events-none absolute inset-4 z-30 ring-1 ring-inset ring-white/10 rounded-[14px]" />
-      <div className="relative z-30 flex h-full flex-col justify-between p-6">
-        <div className="flex items-center gap-2.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
-          <span className="text-[10px] font-medium uppercase tracking-[0.3em] opacity-85">
-            {s.lede}
-          </span>
-        </div>
-        <div>
-          <h3
-            className="font-display text-[1.6rem]"
-            style={{ lineHeight: 1.1, letterSpacing: "-0.012em", fontWeight: 400 }}
-          >
-            {s.title}
-          </h3>
-          <p className="mt-3 text-pretty text-[14px] leading-[1.6] opacity-90">
-            {s.body}
-          </p>
-          <Link
-            href="#kontakt"
-            className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.26em] opacity-85"
-          >
-            Beratung anfragen
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
-      </div>
     </>
   );
 }
@@ -143,8 +114,6 @@ const ServiceCard = memo(function ServiceCard({
   index: number;
 }) {
   const tone = toneClass[s.tone];
-  const titleSize =
-    layout.size === "lg" ? "text-3xl md:text-[2.4rem]" : "text-2xl md:text-3xl";
   return (
     <motion.article
       initial={{ opacity: 0, y: 36 }}
@@ -167,38 +136,6 @@ const ServiceCard = memo(function ServiceCard({
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
       />
       <div className="pointer-events-none absolute inset-5 z-30 ring-1 ring-inset ring-white/10 rounded-[16px]" />
-
-      <div className="relative z-30 flex h-full flex-col justify-between p-9">
-        <div className="flex items-center gap-2.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
-          <span className="text-[11px] font-medium uppercase tracking-[0.28em] opacity-85">
-            {s.lede}
-          </span>
-        </div>
-
-        <div>
-          <h3
-            className={`font-display ${titleSize}`}
-            style={{ lineHeight: 1.12, letterSpacing: "-0.012em", fontWeight: 400 }}
-          >
-            {s.title}
-          </h3>
-          {layout.size === "lg" && (
-            <p className="measure-prose mt-4 text-pretty text-sm leading-relaxed opacity-90 md:text-base">
-              {s.body}
-            </p>
-          )}
-          <Link
-            href="#kontakt"
-            className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.26em] opacity-80 transition-opacity hover:opacity-100"
-          >
-            Beratung anfragen
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
-      </div>
     </motion.article>
   );
 });

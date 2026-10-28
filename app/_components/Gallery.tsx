@@ -64,21 +64,6 @@ function CardInner({ it, eager = false }: { it: (typeof items)[number]; eager?: 
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
       <div className="pointer-events-none absolute inset-4 z-30 ring-1 ring-inset ring-white/10 rounded-[14px] sm:inset-6 sm:rounded-[16px]" />
-
-      <div className="relative z-30 flex h-full flex-col justify-between p-5 sm:p-7 md:p-9">
-        <div className="flex items-center gap-2.5 text-[10px] font-medium uppercase tracking-[0.3em] opacity-85 sm:text-[11px]">
-          <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
-          <span>{it.kind}</span>
-        </div>
-        <div>
-          <h4 className="font-display" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", lineHeight: 1.15, letterSpacing: "-0.012em", fontWeight: 400 }}>
-            {it.label}
-          </h4>
-          <div className="mt-2 text-[10px] font-medium uppercase tracking-[0.3em] opacity-70">
-            GDH · Bous
-          </div>
-        </div>
-      </div>
     </>
   );
 }
