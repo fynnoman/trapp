@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
+import { PrivacyNotice } from "./_components/PrivacyNotice";
 
 const display = localFont({
   variable: "--font-display",
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <PrivacyNotice />
       </body>
     </html>
   );
