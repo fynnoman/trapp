@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
 type Payload = {
   name?: string;
   kontakt?: string;
