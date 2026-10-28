@@ -104,14 +104,14 @@ function HeroMobile() {
           >
             <a
               href="#leistungen"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-cream px-6 py-4 text-[15px] font-medium tracking-[0.02em] text-anthracite shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)] active:scale-[0.98] transition-transform"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cream px-6 py-3.5 text-[15px] font-medium tracking-[0.02em] text-anthracite shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)] transition-[transform,opacity] active:scale-[0.98] active:opacity-85"
             >
               Leistungen entdecken
               <Arrow />
             </a>
             <a
               href="#kontakt"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cream/35 bg-cream/5 px-6 py-4 text-[15px] font-medium tracking-[0.02em] text-cream backdrop-blur-md active:scale-[0.98] transition-transform"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-cream/35 bg-cream/5 px-6 py-3.5 text-[15px] font-medium tracking-[0.02em] text-cream backdrop-blur-md transition-[transform,opacity] active:scale-[0.98] active:bg-cream/10"
             >
               Projekt anfragen
               <Arrow />

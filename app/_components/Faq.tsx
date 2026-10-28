@@ -66,7 +66,7 @@ export function Faq() {
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-anthracite/15 bg-cream text-anthracite transition-colors group-hover:bg-anthracite group-hover:text-cream"
+                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-anthracite/15 bg-cream text-anthracite transition-colors group-hover:bg-anthracite group-hover:text-cream group-active:bg-anthracite group-active:text-cream"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                       <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

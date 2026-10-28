@@ -117,14 +117,14 @@ export function Nav() {
             </a>
             <a
               href={`tel:${SITE.phoneHref}`}
-              className={`md:hidden rounded-full p-3 transition-colors ${scrolled ? "bg-anthracite text-cream" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
+              className={`md:hidden inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-3 transition-colors active:opacity-80 ${scrolled ? "bg-anthracite text-cream" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
               aria-label="Anrufen"
             >
               <PhoneGlyph />
             </a>
             <button
               onClick={() => setOpen(true)}
-              className={`md:hidden rounded-full p-3 transition-colors ${scrolled ? "border border-anthracite/15 bg-cream/80 text-anthracite backdrop-blur-sm" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
+              className={`md:hidden inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-3 transition-colors active:opacity-80 ${scrolled ? "border border-anthracite/15 bg-cream/80 text-anthracite backdrop-blur-sm" : "bg-cream/15 text-cream backdrop-blur-md ring-1 ring-cream/30"}`}
               aria-label="Menü öffnen"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -153,6 +153,11 @@ export function Nav() {
               exit={{ y: -32, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="relative m-4 rounded-[20px] border border-anthracite/8 bg-cream p-6 shadow-[0_30px_80px_-30px_rgba(37,36,33,0.4)]"
+              style={{
+                marginTop: "max(1rem, env(safe-area-inset-top))",
+                paddingLeft: "max(1.5rem, env(safe-area-inset-left))",
+                paddingRight: "max(1.5rem, env(safe-area-inset-right))",
+              }}
             >
               <div className="flex items-center justify-between pb-5">
                 <Image
@@ -164,7 +169,7 @@ export function Nav() {
                 />
                 <button
                   onClick={() => setOpen(false)}
-                  className="rounded-full bg-anthracite/8 p-2"
+                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-anthracite/8 p-3 active:bg-anthracite/15"
                   aria-label="Menü schließen"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">

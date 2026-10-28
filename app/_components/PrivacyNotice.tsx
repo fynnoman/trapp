@@ -40,6 +40,11 @@ export function PrivacyNotice() {
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-x-3 bottom-3 z-[90] sm:inset-x-auto sm:bottom-5 sm:left-5 sm:right-5 sm:mx-auto sm:max-w-[720px]"
+          style={{
+            bottom: "max(0.75rem, env(safe-area-inset-bottom))",
+            paddingLeft: "env(safe-area-inset-left)",
+            paddingRight: "env(safe-area-inset-right)",
+          }}
         >
           <div className="relative overflow-hidden rounded-[16px] border border-anthracite/15 bg-cream/95 shadow-[0_30px_60px_-24px_rgba(37,36,33,0.35)] backdrop-blur-md sm:rounded-[18px]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_85%_15%,rgba(180,154,114,0.18),transparent_65%)]" />
@@ -67,7 +72,7 @@ export function PrivacyNotice() {
                 <button
                   type="button"
                   onClick={dismiss}
-                  className="inline-flex items-center justify-center rounded-full bg-anthracite px-5 py-2.5 text-[12px] font-medium tracking-[0.02em] text-cream transition-opacity hover:opacity-90"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-anthracite px-6 py-3 text-[13px] font-medium tracking-[0.02em] text-cream transition-opacity hover:opacity-90 active:opacity-80 sm:w-auto sm:py-2.5 sm:text-[12px]"
                 >
                   Verstanden
                 </button>

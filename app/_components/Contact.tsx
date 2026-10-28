@@ -111,7 +111,7 @@ function ContactRow({
       </div>
       <button
         onClick={onCopy}
-        className="flex-shrink-0 rounded-full border border-anthracite/15 bg-cream px-4 py-2 text-[10px] font-medium uppercase tracking-[0.26em] text-anthracite-soft transition-colors hover:bg-anthracite hover:text-cream"
+        className="inline-flex min-h-11 flex-shrink-0 items-center justify-center rounded-full border border-anthracite/15 bg-cream px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.26em] text-anthracite-soft transition-colors hover:bg-anthracite hover:text-cream active:bg-anthracite active:text-cream sm:text-[10px]"
       >
         {copied ? "Kopiert" : "Kopieren"}
       </button>
@@ -225,7 +225,7 @@ function ContactForm() {
       <button
         type="submit"
         aria-disabled={disabled || undefined}
-        className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-anthracite px-6 py-3.5 text-[14px] font-medium tracking-[0.02em] text-cream transition-opacity ${disabled ? "opacity-70" : "hover:opacity-90"}`}
+        className={`mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-anthracite px-6 py-3.5 text-[15px] font-medium tracking-[0.02em] text-cream transition-opacity sm:text-[14px] ${disabled ? "opacity-70" : "hover:opacity-90 active:opacity-80"}`}
       >
         {state === "sending"
           ? "Wird gesendet …"
@@ -271,7 +271,7 @@ function Field({
     "mt-1 w-full rounded-[12px] border border-anthracite/15 bg-cream px-4 py-3 text-[16px] text-anthracite placeholder:text-anthracite-mute focus:border-champagne/60 focus:outline-none focus:ring-2 focus:ring-champagne/25 disabled:opacity-70";
   return (
     <label className="block">
-      <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-anthracite-mute">
+      <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-anthracite-mute sm:text-[10px]">
         {label}
       </span>
       {as === "input" ? (
