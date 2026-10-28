@@ -114,17 +114,51 @@ function ContactRow({
 }
 
 function ContactForm() {
-  const [state, setState] = useState<"idle" | "sent">("idle");
-  const [data, setData] = useState({ name: "", kontakt: "", vorhaben: "" });
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [data, setData] = useState({ name: "", kontakt: "", vorhaben: "", website: "" });
 
-  const mailto = () => {
-    const subject = encodeURIComponent(`Projektanfrage von ${data.name || "Ohne Name"}`);
-    const body = encodeURIComponent(
-      `Name: ${data.name}\nKontakt: ${data.kontakt}\n\nVorhaben:\n${data.vorhaben}`,
-    );
-    window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
-    setState("sent");
+  const submit = async () => {
+    if (state === "sending") return;
+
+    const name = data.name.trim();
+    const kontakt = data.kontakt.trim();
+    const vorhaben = data.vorhaben.trim();
+
+    if (!name || !kontakt || !vorhaben) {
+      setErrorMsg("Bitte füllen Sie alle drei Felder aus.");
+      setState("error");
+      return;
+    }
+
+    setState("sending");
+    setErrorMsg(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, kontakt, vorhaben, website: data.website }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`status_${res.status}`);
+      }
+
+      const json = (await res.json().catch(() => ({}))) as { ok?: boolean };
+      if (!json.ok) throw new Error("not_ok");
+
+      setState("sent");
+      setData({ name: "", kontakt: "", vorhaben: "", website: "" });
+    } catch {
+      setState("error");
+      setErrorMsg(
+        `Übermittlung fehlgeschlagen. Bitte senden Sie Ihre Anfrage direkt an ${SITE.email} oder rufen Sie unter ${SITE.phoneDisplay} an.`,
+      );
+    }
   };
+
+  const disabled = state === "sending" || state === "sent";
 
   return (
     <motion.form
@@ -134,9 +168,10 @@ function ContactForm() {
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       onSubmit={(e) => {
         e.preventDefault();
-        mailto();
+        submit();
       }}
-      className="rounded-[18px] border border-anthracite/10 bg-cream/90 p-6 shadow-[0_30px_60px_-32px_rgba(37,36,33,0.3)] sm:rounded-[22px] sm:p-8"
+      noValidate
+      className="relative rounded-[18px] border border-anthracite/10 bg-cream/90 p-6 shadow-[0_30px_60px_-32px_rgba(37,36,33,0.3)] sm:rounded-[22px] sm:p-8"
     >
       <div className="flex items-center gap-3">
         <span className="rule-gold" />
@@ -151,34 +186,65 @@ function ContactForm() {
           label="Name"
           value={data.name}
           onChange={(v) => setData((d) => ({ ...d, name: v }))}
+          disabled={disabled}
         />
         <Field
           label="Telefon oder E-Mail"
           value={data.kontakt}
           onChange={(v) => setData((d) => ({ ...d, kontakt: v }))}
+          disabled={disabled}
         />
         <Field
           label="Worum geht es?"
           value={data.vorhaben}
           onChange={(v) => setData((d) => ({ ...d, vorhaben: v }))}
           as="textarea"
+          disabled={disabled}
         />
+      </div>
+
+      <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+        <label>
+          Website
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={data.website}
+            onChange={(e) => setData((d) => ({ ...d, website: e.target.value }))}
+          />
+        </label>
       </div>
 
       <MagneticButton
         as="button"
         type="submit"
-        className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-anthracite px-6 py-3.5 text-[14px] font-medium tracking-[0.02em] text-cream"
+        aria-disabled={disabled || undefined}
+        className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-anthracite px-6 py-3.5 text-[14px] font-medium tracking-[0.02em] text-cream ${disabled ? "opacity-70" : ""}`}
       >
-        {state === "sent" ? "Mail wird geöffnet" : "Projekt anfragen"}
+        {state === "sending"
+          ? "Wird gesendet …"
+          : state === "sent"
+            ? "Anfrage gesendet"
+            : "Projekt anfragen"}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </MagneticButton>
 
-      <p className="mt-3 text-center text-[11px] text-anthracite-mute">
-        Öffnet Ihr Mailprogramm. Es werden keine Daten gespeichert.
-      </p>
+      {state === "sent" ? (
+        <p className="mt-3 text-center text-[12px] text-anthracite">
+          Vielen Dank. Wir melden uns zeitnah bei Ihnen.
+        </p>
+      ) : state === "error" && errorMsg ? (
+        <p role="alert" className="mt-3 text-center text-[12px] text-[#8a2b1f]">
+          {errorMsg}
+        </p>
+      ) : (
+        <p className="mt-3 text-center text-[11px] text-anthracite-mute">
+          Ihre Anfrage geht direkt an uns. Es werden keine Daten darüber hinaus gespeichert.
+        </p>
+      )}
     </motion.form>
   );
 }
@@ -188,14 +254,16 @@ function Field({
   value,
   onChange,
   as = "input",
+  disabled = false,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   as?: "input" | "textarea";
+  disabled?: boolean;
 }) {
   const base =
-    "mt-1 w-full rounded-[12px] border border-anthracite/15 bg-cream px-4 py-3 text-[16px] text-anthracite placeholder:text-anthracite-mute focus:border-champagne/60 focus:outline-none focus:ring-2 focus:ring-champagne/25";
+    "mt-1 w-full rounded-[12px] border border-anthracite/15 bg-cream px-4 py-3 text-[16px] text-anthracite placeholder:text-anthracite-mute focus:border-champagne/60 focus:outline-none focus:ring-2 focus:ring-champagne/25 disabled:opacity-70";
   return (
     <label className="block">
       <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-anthracite-mute">
@@ -208,6 +276,7 @@ function Field({
           className={base}
           type="text"
           autoComplete="off"
+          disabled={disabled}
         />
       ) : (
         <textarea
@@ -215,6 +284,7 @@ function Field({
           onChange={(e) => onChange(e.target.value)}
           className={`${base} min-h-[120px] resize-none`}
           rows={4}
+          disabled={disabled}
         />
       )}
     </label>

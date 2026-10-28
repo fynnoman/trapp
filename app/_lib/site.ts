@@ -10,7 +10,7 @@ export const SITE = {
   zip: "66359",
   phoneDisplay: "0177 361 63 58",
   phoneHref: "+4917736163558",
-  email: "Gdh.verputz@web.de",
+  email: "info@gipser-der-herzen.de",
   hours: "Montag bis Freitag, 07:30 bis 18:00",
   ustid: "DE452632565",
   foundedYear: 2018,
