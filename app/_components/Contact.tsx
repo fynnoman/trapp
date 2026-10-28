@@ -48,7 +48,6 @@ export function Contact() {
               <ContactRow
                 label="E-Mail"
                 value={SITE.email}
-                href={`mailto:${SITE.email}`}
                 onCopy={() => copy(SITE.email, "mail")}
                 copied={copied === "mail"}
               />
@@ -85,23 +84,31 @@ function ContactRow({
 }: {
   label: string;
   value: string;
-  href: string;
+  href?: string;
   onCopy: () => void;
   copied: boolean;
 }) {
+  const valueClass =
+    "font-display mt-1 block truncate text-anthracite transition-colors";
+  const valueStyle = {
+    fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
+    fontWeight: 400,
+  } as const;
   return (
     <div className="flex items-center justify-between gap-3 rounded-[14px] border border-anthracite/10 bg-cream/80 px-5 py-4">
       <div className="min-w-0 flex-1">
         <div className="text-[10px] font-medium uppercase tracking-[0.3em] text-anthracite-mute">
           {label}
         </div>
-        <a
-          href={href}
-          className="font-display mt-1 block truncate text-anthracite transition-colors hover:text-champagne"
-          style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)", fontWeight: 400 }}
-        >
-          {value}
-        </a>
+        {href ? (
+          <a href={href} className={`${valueClass} hover:text-champagne`} style={valueStyle}>
+            {value}
+          </a>
+        ) : (
+          <span className={valueClass} style={valueStyle}>
+            {value}
+          </span>
+        )}
       </div>
       <button
         onClick={onCopy}

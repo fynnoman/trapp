@@ -45,9 +45,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${SITE.email}`} className="break-all transition-colors hover:text-champagne">
+                <Link href="/#kontakt" className="break-all transition-colors hover:text-champagne">
                   {SITE.email}
-                </a>
+                </Link>
               </li>
               <li className="pt-3 text-cream/60">
                 {SITE.street}

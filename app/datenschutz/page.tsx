@@ -29,10 +29,7 @@ export default function Datenschutz() {
               {SITE.phoneDisplay}
             </a>
             <br />
-            E-Mail:{" "}
-            <a href={`mailto:${SITE.email}`} className="text-ink hover:text-clay">
-              {SITE.email}
-            </a>
+            E-Mail: {SITE.email}
           </p>
         </Block>
 
