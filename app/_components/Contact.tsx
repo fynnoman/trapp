@@ -56,7 +56,7 @@ export function Contact() {
                   Werkstatt
                 </div>
                 <div className="mt-1 text-[15px] text-anthracite">
-                  {SITE.street}, {SITE.zip} {SITE.city}
+                  {SITE.displayStreet}, {SITE.displayZip} {SITE.displayCity}
                 </div>
               </div>
               <div className="rounded-[14px] border border-anthracite/10 bg-cream/80 px-5 py-4">

@@ -50,9 +50,9 @@ export function Footer() {
                 </Link>
               </li>
               <li className="pt-3 text-cream/60">
-                {SITE.street}
+                {SITE.displayStreet}
                 <br />
-                {SITE.zip} {SITE.city}
+                {SITE.displayZip} {SITE.displayCity}
               </li>
               <li className="pt-3 text-cream/60">{SITE.hours}</li>
             </ul>
