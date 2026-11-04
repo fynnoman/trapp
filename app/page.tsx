@@ -5,9 +5,6 @@ import { BrandPromise } from "./_components/BrandPromise";
 import { ServicesPinned } from "./_components/ServicesPinned";
 import { Trust } from "./_components/Trust";
 
-const ProcessPinned = dynamic(() =>
-  import("./_components/ProcessPinned").then((m) => ({ default: m.ProcessPinned })),
-);
 const Values = dynamic(() =>
   import("./_components/Values").then((m) => ({ default: m.Values })),
 );
@@ -23,6 +20,9 @@ const Faq = dynamic(() =>
 const Contact = dynamic(() =>
   import("./_components/Contact").then((m) => ({ default: m.Contact })),
 );
+const MapSection = dynamic(() =>
+  import("./_components/MapSection").then((m) => ({ default: m.MapSection })),
+);
 
 export default function Home() {
   return (
@@ -32,12 +32,12 @@ export default function Home() {
       <BrandPromise />
       <ServicesPinned />
       <Trust />
-      <ProcessPinned />
       <Values />
       <Gallery />
       <About />
       <Faq />
       <Contact />
+      <MapSection />
     </>
   );
 }

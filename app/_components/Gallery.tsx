@@ -15,7 +15,7 @@ const items = [
     image: IMG.galleryA,
   },
   {
-    label: "Clipso Spanndecke",
+    label: "Spanndecke",
     kind: "Decke",
     accent: "material-lime",
     text: "text-anthracite",

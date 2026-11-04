@@ -3,7 +3,7 @@
 const items = [
   "Innen- und Außenputz",
   "Trockenbau",
-  "Clipso Spanndecken",
+  "Spanndecken",
   "Malerarbeiten",
   "Bodenbelagsarbeiten",
   "Gerüstbau",

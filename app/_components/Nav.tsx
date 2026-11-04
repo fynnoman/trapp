@@ -8,7 +8,6 @@ import { SITE } from "../_lib/site";
 
 const links = [
   { href: "#leistungen", id: "leistungen", label: "Leistungen" },
-  { href: "#handwerk", id: "handwerk", label: "Philosophie" },
   { href: "#projekte", id: "projekte", label: "Referenzen" },
   { href: "#betrieb", id: "betrieb", label: "Über uns" },
   { href: "#kontakt", id: "kontakt", label: "Kontakt" },
