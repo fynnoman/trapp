@@ -59,22 +59,36 @@ export async function POST(request: Request) {
   const kontaktIsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(kontakt);
   const replyTo = kontaktIsEmail ? kontakt : undefined;
 
-  const subject = `Projektanfrage von ${name}`;
+  const subject = `Projektanfrage · ${name}`;
   const text = [
-    `Name: ${name}`,
+    `Guten Tag,`,
+    ``,
+    `über das Kontaktformular auf gdh-verputz.de ist eine neue Projektanfrage eingegangen.`,
+    ``,
+    `Name:    ${name}`,
     `Kontakt: ${kontakt}`,
-    "",
-    "Vorhaben:",
+    ``,
+    `Vorhaben:`,
     vorhaben,
+    ``,
+    `--`,
+    `Diese Nachricht wurde automatisch vom Kontaktformular gdh-verputz.de versendet.`,
   ].join("\n");
 
   const html = `
     <div style="font-family:Arial,Helvetica,sans-serif;color:#252421;line-height:1.6;font-size:15px;">
-      <h2 style="margin:0 0 16px;font-weight:400;">Neue Projektanfrage</h2>
+      <p style="margin:0 0 12px;">Guten Tag,</p>
+      <p style="margin:0 0 18px;">
+        über das Kontaktformular auf <a href="https://gdh-verputz.de" style="color:#252421;">gdh-verputz.de</a>
+        ist eine neue Projektanfrage eingegangen.
+      </p>
       <p style="margin:0 0 6px;"><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p style="margin:0 0 20px;"><strong>Kontakt:</strong> ${escapeHtml(kontakt)}</p>
       <p style="margin:0 0 6px;"><strong>Vorhaben:</strong></p>
       <div style="white-space:pre-wrap;padding:12px 14px;background:#f5f1ea;border-radius:10px;">${escapeHtml(vorhaben)}</div>
+      <p style="margin:24px 0 0;font-size:12px;color:#8a877f;">
+        Diese Nachricht wurde automatisch vom Kontaktformular gdh-verputz.de versendet.
+      </p>
     </div>
   `.trim();
 
@@ -87,6 +101,9 @@ export async function POST(request: Request) {
       text,
       html,
       replyTo,
+      headers: {
+        "X-Entity-Ref-ID": `gdh-contact-${Date.now()}`,
+      },
     });
 
     if (error) {
