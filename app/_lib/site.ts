@@ -6,7 +6,7 @@ export const SITE = {
   inhaber: "Christoph Trapp",
   city: "Bous",
   region: "Saarland",
-  street: "Leipziger Straße 14",
+  street: "Traminerweg 4",
   zip: "66359",
   displayStreet: "Traminerweg 4",
   displayZip: "66359",

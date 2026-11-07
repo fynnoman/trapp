@@ -16,7 +16,7 @@ export default function Impressum() {
       </h1>
 
       <div className="mt-12 space-y-10 text-ink-soft">
-        <Block title="Angaben gemäß § 5 TMG">
+        <Block title="Angaben gemäß § 5 DDG">
           <p>
             {SITE.name}
             <br />
@@ -50,33 +50,10 @@ export default function Impressum() {
         </Block>
 
         <Block title="Streitschlichtung">
-          <p>
-            Die Europäische Kommission stellt eine Plattform zur
-            Online-Streitbeilegung bereit:{" "}
-            <a
-              href="https://ec.europa.eu/consumers/odr"
-              target="_blank"
-              rel="noreferrer"
-              className="text-ink hover:text-clay"
-            >
-              ec.europa.eu/consumers/odr
-            </a>
-            . Zur Teilnahme an einem Streitbeilegungsverfahren vor einer
-            Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht
-            bereit.
-          </p>
+          <p>Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit.</p>
         </Block>
 
-        <Block title="Haftung für Inhalte">
-          <p>
-            Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte
-            auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-            Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
-            verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
-            überwachen oder nach Umständen zu forschen, die auf eine
-            rechtswidrige Tätigkeit hinweisen.
-          </p>
-        </Block>
+
       </div>
     </section>
   );
